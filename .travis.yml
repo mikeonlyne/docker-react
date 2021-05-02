@@ -6,7 +6,7 @@ before_install:
   - docker build -t mikeonline/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run mikeonline/docker-react npm run test -- --watchAll=false
+  - docker run mikeonline/docker-react npm run test -- --watchAll=false 
 
 deploy:
   provider: elasticbeanstalk
@@ -16,4 +16,7 @@ deploy:
   bucket_name: "elasticbeanstalk-eu-west-2-144056098056"
   bucket_path: "docker"
   on:
-    branch: master 
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
